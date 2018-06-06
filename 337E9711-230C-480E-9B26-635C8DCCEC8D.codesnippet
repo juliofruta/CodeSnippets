@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-strategy-pattern</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//💡 Strategy
+//
+//The strategy pattern is used to create an interchangeable family of algorithms from which the required process is chosen at run-time.
+//
+//Example
+
+protocol PrintStrategy {
+    func print(_ string: String) -&gt; String
+}
+
+final class Printer {
+    
+    private let strategy: PrintStrategy
+    
+    func print(_ string: String) -&gt; String {
+        return self.strategy.print(string)
+    }
+    
+    init(strategy: PrintStrategy) {
+        self.strategy = strategy
+    }
+}
+
+final class UpperCaseStrategy: PrintStrategy {
+    func print(_ string: String) -&gt; String {
+        return string.uppercased()
+    }
+}
+
+final class LowerCaseStrategy: PrintStrategy {
+    func print(_ string:String) -&gt; String {
+        return string.lowercased()
+    }
+}
+//Usage
+
+var lower = Printer(strategy: LowerCaseStrategy())
+lower.print("O tempora, o mores!")
+
+var upper = Printer(strategy: UpperCaseStrategy())
+upper.print("O tempora, o mores!")</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>337E9711-230C-480E-9B26-635C8DCCEC8D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The strategy pattern is used to create an interchangeable family of algorithms from which the required process is chosen at run-time.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Strategy</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

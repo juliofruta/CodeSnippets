@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>structural-adapter-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//
+//🔌 Adapter
+//
+//The adapter pattern is used to provide a link between two otherwise incompatible types by wrapping the "adaptee" with a class that supports the interface required by the client.
+//
+//Example
+
+protocol OlderDeathStarSuperLaserAiming {
+    var angleV: NSNumber {get}
+    var angleH: NSNumber {get}
+}
+//Adaptee
+
+struct DeathStarSuperlaserTarget {
+    let angleHorizontal: Double
+    let angleVertical: Double
+    
+    init(angleHorizontal:Double, angleVertical:Double) {
+        self.angleHorizontal = angleHorizontal
+        self.angleVertical = angleVertical
+    }
+}
+//Adapter
+
+struct OldDeathStarSuperlaserTarget : OlderDeathStarSuperLaserAiming {
+    private let target : DeathStarSuperlaserTarget
+    
+    var angleV:NSNumber {
+        return NSNumber(value: target.angleVertical)
+    }
+    
+    var angleH:NSNumber {
+        return NSNumber(value: target.angleHorizontal)
+    }
+    
+    init(_ target:DeathStarSuperlaserTarget) {
+        self.target = target
+    }
+}
+//Usage
+
+let target = DeathStarSuperlaserTarget(angleHorizontal: 14.0, angleVertical: 12.0)
+let oldFormat = OldDeathStarSuperlaserTarget(target)
+
+oldFormat.angleH
+oldFormat.angleV
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>25D26E83-2CBC-4502-A931-731C131D097D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The adapter pattern is used to provide a link between two otherwise incompatible types by wrapping the "adaptee" with a class that supports the interface required by the client.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Adapter</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>structural-facade-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//Façade
+//
+//The facade pattern is used to define a simplified interface to a more complex subsystem.
+//
+//Example
+
+enum Eternal {
+    
+    static func set(_ object: Any, forKey defaultName: String) {
+        let defaults: UserDefaults = UserDefaults.standard
+        defaults.set(object, forKey:defaultName)
+        defaults.synchronize()
+    }
+    
+    static func object(forKey key: String) -&gt; AnyObject! {
+        let defaults: UserDefaults = UserDefaults.standard
+        return defaults.object(forKey: key) as AnyObject!
+    }
+    
+}
+//Usage
+
+Eternal.set("Disconnect me. I’d rather be nothing", forKey:"Bishop")
+Eternal.object(forKey: "Bishop")
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>62DB1558-7FB0-4197-9D32-F47FB00A2885</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The facade pattern is used to define a simplified interface to a more complex subsystem.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Facade</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

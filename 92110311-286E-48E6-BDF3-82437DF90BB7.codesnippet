@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>structural-decorator-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//🍧 Decorator
+//
+//The decorator pattern is used to extend or alter the functionality of objects at run- time by wrapping them in an object of a decorator class. This provides a flexible alternative to using inheritance to modify behaviour.
+//
+//Example
+
+protocol Coffee {
+    func getCost() -&gt; Double
+    func getIngredients() -&gt; String
+}
+
+class SimpleCoffee: Coffee {
+    func getCost() -&gt; Double {
+        return 1.0
+    }
+    
+    func getIngredients() -&gt; String {
+        return "Coffee"
+    }
+}
+
+class CoffeeDecorator: Coffee {
+    private let decoratedCoffee: Coffee
+    fileprivate let ingredientSeparator: String = ", "
+    
+    required init(decoratedCoffee: Coffee) {
+        self.decoratedCoffee = decoratedCoffee
+    }
+    
+    func getCost() -&gt; Double {
+        return decoratedCoffee.getCost()
+    }
+    
+    func getIngredients() -&gt; String {
+        return decoratedCoffee.getIngredients()
+    }
+}
+
+final class Milk: CoffeeDecorator {
+    required init(decoratedCoffee: Coffee) {
+        super.init(decoratedCoffee: decoratedCoffee)
+    }
+    
+    override func getCost() -&gt; Double {
+        return super.getCost() + 0.5
+    }
+    
+    override func getIngredients() -&gt; String {
+        return super.getIngredients() + ingredientSeparator + "Milk"
+    }
+}
+
+final class WhipCoffee: CoffeeDecorator {
+    required init(decoratedCoffee: Coffee) {
+        super.init(decoratedCoffee: decoratedCoffee)
+    }
+    
+    override func getCost() -&gt; Double {
+        return super.getCost() + 0.7
+    }
+    
+    override func getIngredients() -&gt; String {
+        return super.getIngredients() + ingredientSeparator + "Whip"
+    }
+}
+//Usage:
+
+var someCoffee: Coffee = SimpleCoffee()
+print("Cost : \(someCoffee.getCost()); Ingredients: \(someCoffee.getIngredients())")
+someCoffee = Milk(decoratedCoffee: someCoffee)
+print("Cost : \(someCoffee.getCost()); Ingredients: \(someCoffee.getIngredients())")
+someCoffee = WhipCoffee(decoratedCoffee: someCoffee)
+print("Cost : \(someCoffee.getCost()); Ingredients: \(someCoffee.getIngredients())")</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>92110311-286E-48E6-BDF3-82437DF90BB7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The decorator pattern is used to extend or alter the functionality of objects at run- time by wrapping them in an object of a decorator class. This provides a flexible alternative to using inheritance to modify behaviour.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Decorator</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

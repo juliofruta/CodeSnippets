@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>structural-protection-proxy-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//☔️ Protection Proxy
+//
+//The proxy pattern is used to provide a surrogate or placeholder object, which references an underlying object. Protection proxy is restricting access.
+//
+//Example
+
+protocol DoorOperator {
+    func open(doors: String) -&gt; String
+}
+
+class HAL9000 : DoorOperator {
+    func open(doors: String) -&gt; String {
+        return ("HAL9000: Affirmative, Dave. I read you. Opened \(doors).")
+    }
+}
+
+class CurrentComputer : DoorOperator {
+    private var computer: HAL9000!
+    
+    func authenticate(password: String) -&gt; Bool {
+        
+        guard password == "pass" else {
+            return false;
+        }
+        
+        computer = HAL9000()
+        
+        return true
+    }
+    
+    func open(doors: String) -&gt; String {
+        
+        guard computer != nil else {
+            return "Access Denied. I'm afraid I can't do that."
+        }
+        
+        return computer.open(doors: doors)
+    }
+}
+//Usage
+
+let computer = CurrentComputer()
+let podBay = "Pod Bay Doors"
+
+computer.open(doors: podBay)
+
+computer.authenticate(password: "pass")
+computer.open(doors: podBay)
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>E2A98B93-AC4A-47F7-9FBE-D3E46D6916FC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The proxy pattern is used to provide a surrogate or placeholder object, which references an underlying object. Protection proxy is restricting access.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Protection Proxy</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

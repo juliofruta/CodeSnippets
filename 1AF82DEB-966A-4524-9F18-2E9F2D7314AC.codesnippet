@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>creational-prototype-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//🃏 Prototype
+//
+//The prototype pattern is used to instantiate a new object by copying all of the properties of an existing object, creating an independent clone. This practise is particularly useful when the construction of a new object is inefficient.
+//
+//Example
+
+class PrototypableClass {
+    var name: String?
+    let font: String
+    
+    init(name: String? = nil, font: String) {
+        self.name = name
+        self.font = font
+    }
+    
+    func clone() -&gt; PrototypableClass {
+        return PrototypableClass(name: name, font:font)
+    }
+}
+//Usage
+
+let Prototype = PrototypableClass(font:"GotanProject")
+
+let Philippe = Prototype.clone()
+Philippe.name = "Philippe"
+
+let Christoph = Prototype.clone()
+Christoph.name = "Christoph"
+
+let Eduardo = Prototype.clone()
+Eduardo.name = "Eduardo"
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>1AF82DEB-966A-4524-9F18-2E9F2D7314AC</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The prototype pattern is used to instantiate a new object by copying all of the properties of an existing object, creating an independent clone. This practise is particularly useful when the construction of a new object is inefficient.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Prototype</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

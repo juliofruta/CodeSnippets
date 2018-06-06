@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-observer-pattern</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>
+//👓 Observer
+//
+//The observer pattern is used to allow an object to publish changes to its state. Other objects subscribe to be immediately notified of any changes.
+//
+//Example
+
+protocol PropertyObserver : class {
+    func willChange(propertyName: String, newPropertyValue: Any?)
+    func didChange(propertyName: String, oldPropertyValue: Any?)
+}
+
+final class Observed {
+    
+    weak var observer:PropertyObserver?
+    
+    private let propertyName = "versionNumber"
+    
+    var versionNumber: Int = 0 {
+        willSet(newValue) {
+            observer?.willChange(propertyName: propertyName, newPropertyValue: newValue)
+        }
+        didSet {
+            observer?.didChange(propertyName: propertyName, oldPropertyValue: oldValue)
+        }
+    }
+}
+
+final class Observer : PropertyObserver {
+    func willChange(propertyName: String, newPropertyValue: Any?) {
+        if newPropertyValue as? Int == 1 {
+            print("Okay. Look. We both said a lot of things that you're going to regret.")
+        }
+    }
+    
+    func didChange(propertyName: String, oldPropertyValue: Any?) {
+        if oldPropertyValue as? Int == 0 {
+            print("Sorry about the mess. I've really let the place go since you killed me.")
+        }
+    }
+}
+//Usage
+
+var observerInstance = Observer()
+var testChambers = Observed()
+testChambers.observer = observerInstance
+testChambers.versionNumber += 1</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B5B3871F-E6A0-4D34-A003-92B529930584</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The observer pattern is used to allow an object to publish changes to its state. Other objects subscribe to be immediately notified of any changes.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Observer</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

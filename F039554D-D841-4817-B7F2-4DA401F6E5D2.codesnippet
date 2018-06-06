@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>creational-abstract-factory-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//🌰 Abstract Factory
+//
+//The abstract factory pattern is used to provide a client with a set of related or dependant objects. The "family" of objects created by the factory are determined at run-time.
+//
+//Example
+//
+//Protocols
+
+protocol Creator {
+    static func make() -&gt; Product
+}
+
+protocol Product {
+}
+
+struct CreatorImplementation: Creator {
+    static func make() -&gt; Product {
+        return ProductImplementation()
+    }
+}
+
+struct CreatorImplementation2: Creator {
+    static func make() -&gt; Product {
+        return ProductImplementation()
+    }
+}
+
+struct ProductImplementation: Product {
+}
+
+struct ProductImplementation2: Product {
+}
+
+enum Type {
+    case type1
+    case type2
+}
+
+enum AbstractFactory {
+    static func factory(for type: Type) -&gt; Creator {
+        switch type {
+            case .type1:
+            return CreatorImplementation()
+            case .type2:
+            return CreatorImplementation2()
+        }
+    }
+}
+//Usage
+
+let factory = AbstractFactory.factory(for: .type1)
+factory.make()
+
+let factory2 = AbstractFactory.factory(for: .type2)
+factory2.make()
+
+
+
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F039554D-D841-4817-B7F2-4DA401F6E5D2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The abstract factory pattern is used to provide a client with a set of related or dependant objects. The "family" of objects created by the factory are determined at run-time.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Abstract Factory</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>structural-virtual-proxy-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//🍬 Virtual Proxy
+//
+//The proxy pattern is used to provide a surrogate or placeholder object, which references an underlying object. Virtual proxy is used for loading object on demand.
+//
+//Example
+
+protocol HEVSuitMedicalAid {
+    func administerMorphine() -&gt; String
+}
+
+class HEVSuit : HEVSuitMedicalAid {
+    func administerMorphine() -&gt; String {
+        return "Morphine administered."
+    }
+}
+
+class HEVSuitHumanInterface : HEVSuitMedicalAid {
+    lazy private var physicalSuit: HEVSuit = HEVSuit()
+    
+    func administerMorphine() -&gt; String {
+        return physicalSuit.administerMorphine()
+    }
+}
+//Usage
+
+let humanInterface = HEVSuitHumanInterface()
+humanInterface.administerMorphine()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>79C7EAC6-353A-4649-98F7-700C4BB58995</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The proxy pattern is used to provide a surrogate or placeholder object, which references an underlying object. Virtual proxy is used for loading object on demand.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Virtual proxy</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

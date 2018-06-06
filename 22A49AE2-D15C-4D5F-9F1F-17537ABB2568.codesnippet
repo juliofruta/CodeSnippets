@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-template-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// 🍪 Template
+//
+//The Template Pattern is used when two or more implementations of an algorithm exist. The template is defined and then built upon with further variations. Use this method when most (or all) subclasses need to implement the same behavior. Traditionally, this would be accomplished with abstract classes and protected methods (as in Java). However in Swift, because abstract classes don't exist (yet - maybe someday), we need to accomplish the behavior using interface delegation.
+//
+//Example
+
+protocol ICodeGenerator {
+    func crossCompile()
+}
+
+protocol IGeneratorPhases {
+    func collectSource()
+    func crossCompile()
+}
+
+class CodeGenerator : ICodeGenerator{
+    var delegate: IGeneratorPhases
+    
+    init(delegate: IGeneratorPhases) {
+        self.delegate = delegate
+    }
+    
+    private func fetchDataforGeneration(){
+        //common implementation
+        print("fetchDataforGeneration invoked")
+    }
+    
+    //Template method
+    final func crossCompile() {
+        fetchDataforGeneration()
+        delegate.collectSource()
+        delegate.crossCompile()
+    }
+    
+}
+
+class HTMLGeneratorPhases : IGeneratorPhases {
+    func collectSource() {
+        print("HTMLGeneratorPhases collectSource() executed")
+    }
+    
+    func crossCompile() {
+        print("HTMLGeneratorPhases crossCompile() executed")
+    }
+}
+
+class JSONGeneratorPhases : IGeneratorPhases {
+    func collectSource() {
+        print("JSONGeneratorPhases collectSource() executed")
+    }
+    
+    func crossCompile() {
+        print("JSONGeneratorPhases crossCompile() executed")
+    }
+}
+
+
+//Usage
+
+let htmlGen : ICodeGenerator = CodeGenerator(delegate: HTMLGeneratorPhases())
+let jsonGen: ICodeGenerator = CodeGenerator(delegate: JSONGeneratorPhases())
+
+htmlGen.crossCompile()
+jsonGen.crossCompile()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>22A49AE2-D15C-4D5F-9F1F-17537ABB2568</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The Template Pattern is used when two or more implementations of an algorithm exist. The template is defined and then built upon with further variations. Use this method when most (or all) subclasses need to implement the same behavior. Traditionally, this would be accomplished with abstract classes and protected methods (as in Java). However in Swift, because abstract classes don't exist (yet - maybe someday), we need to accomplish the behavior using interface delegation.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Template</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-iterator-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// 🍫 Iterator
+//
+//The iterator pattern is used to provide a standard interface for traversing a collection of items in an aggregate object without the need to understand its underlying structure.
+//
+//Example:
+
+struct Element {
+    let name: String
+}
+
+struct Elements {
+    let elements: [Element]
+}
+
+struct ElementIterator: IteratorProtocol {
+    
+    private var current = 0
+    private let elements: [Element]
+    
+    init(elements: [Element]) {
+        self.elements = elements
+    }
+    
+    mutating func next() -&gt; Element? {
+        defer { current += 1 }
+        return elements.count &gt; current ? elements[current] : nil
+    }
+}
+
+extension Elements: Sequence {
+    func makeIterator() -&gt; ElementIterator {
+        return ElementIterator(elements: elements)
+    }
+}
+
+//Usage
+
+let greatNovellas = Elements(elements: [Element(name: "element_name")] )
+
+for element in elements {
+    print("elemend named: \(element)")
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>77B3D4CB-5905-4364-8BEC-7586FFA1AADB</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The iterator pattern is used to provide a standard interface for traversing a collection of items in an aggregate object without the need to understand its underlying structure.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Iterator</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

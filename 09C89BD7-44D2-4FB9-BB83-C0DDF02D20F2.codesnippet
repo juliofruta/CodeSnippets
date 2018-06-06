@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-chain-of-responsibility-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//Example:
+//🐝 Chain Of Responsibility
+//
+//The chain of responsibility pattern is used to process varied requests, each of which may be dealt with by a different handler.
+//
+//Example:
+
+protocol Handler {
+    var nextHandler: Handler? { get }
+    func handleRequest(string: String)
+}
+
+struct Gopher: Handler {
+    var nextHandler: Handler?
+    
+    func handleRequest(string: String) {
+        var mutableString = string
+        print("🐿: \(mutableString.removeFirst())")
+        nextHandler?.handleRequest(string: mutableString)
+    }
+}
+
+
+let a = Gopher(nextHandler: nil)
+let b = Gopher(nextHandler: a)
+let c = Gopher(nextHandler: b)
+let d = Gopher(nextHandler: c)
+let e = Gopher(nextHandler: d)
+e.handleRequest(string: "Julio")</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>09C89BD7-44D2-4FB9-BB83-C0DDF02D20F2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The chain of responsibility pattern is used to process varied requests, each of which may be dealt with by a different handler.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Chain Of Responsibility</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

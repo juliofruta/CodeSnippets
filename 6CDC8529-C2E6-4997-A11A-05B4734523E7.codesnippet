@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-state-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//🐉 State
+//
+//The state pattern is used to alter the behaviour of an object as its internal state changes. The pattern allows the class for an object to apparently change at run-time.
+//
+//Example
+
+final class Context {
+    private var state: State = UnauthorizedState()
+    
+    var isAuthorized: Bool {
+        get { return state.isAuthorized(context: self) }
+    }
+    
+    var userId: String? {
+        get { return state.userId(context: self) }
+    }
+    
+    func changeStateToAuthorized(userId: String) {
+        state = AuthorizedState(userId: userId)
+    }
+    
+    func changeStateToUnauthorized() {
+        state = UnauthorizedState()
+    }
+    
+}
+
+protocol State {
+    func isAuthorized(context: Context) -&gt; Bool
+    func userId(context: Context) -&gt; String?
+}
+
+class UnauthorizedState: State {
+    func isAuthorized(context: Context) -&gt; Bool { return false }
+    
+    func userId(context: Context) -&gt; String? { return nil }
+}
+
+class AuthorizedState: State {
+    let userId: String
+    
+    init(userId: String) { self.userId = userId }
+    
+    func isAuthorized(context: Context) -&gt; Bool { return true }
+    
+    func userId(context: Context) -&gt; String? { return userId }
+}
+//Usage
+
+let userContext = Context()
+(userContext.isAuthorized, userContext.userId)
+userContext.changeStateToAuthorized(userId: "admin")
+(userContext.isAuthorized, userContext.userId) // now logged in as "admin"
+userContext.changeStateToUnauthorized()
+(userContext.isAuthorized, userContext.userId)</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6CDC8529-C2E6-4997-A11A-05B4734523E7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The state pattern is used to alter the behaviour of an object as its internal state changes. The pattern allows the class for an object to apparently change at run-time.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>State</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

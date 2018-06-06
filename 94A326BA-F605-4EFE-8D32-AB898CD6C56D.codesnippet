@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>behavioral-visitor-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// 🏃‍♂️ Visitor
+//
+//The visitor pattern is used to separate a relatively complex set of structured data classes from the functionality that may be performed upon the data that they hold.
+//
+//Example
+
+protocol PlanetVisitor {
+    func visit(planet: Mars)
+    func visit(planet: Jupiter)
+    func visit(planet: Pluto)
+    func visit(planet: Earth)
+}
+
+protocol Planet {
+    func accept(visitor: PlanetVisitor)
+}
+
+class Earth: Planet {
+    func accept(visitor: PlanetVisitor) { visitor.visit(planet: self) }
+}
+
+class Mars: Planet {
+    func accept(visitor: PlanetVisitor) { visitor.visit(planet: self) }
+}
+
+class Jupiter: Planet {
+    func accept(visitor: PlanetVisitor) { visitor.visit(planet: self) }
+}
+
+class Pluto: Planet {
+    func accept(visitor: PlanetVisitor) { visitor.visit(planet: self) }
+}
+
+class NameVisitor: PlanetVisitor {
+    var name = ""
+    func visit(planet: Mars) { name = "Mars" }
+    func visit(planet: Jupiter) { name = "Jupiter" }
+    func visit(planet: Pluto) { name = "Pluto" }
+    func visit(planet: Earth) { name = "Earth" }
+}
+
+//Usage
+
+let planets: [Planet] = [Mars(),
+Jupiter(),
+Pluto(),
+Earth()]
+
+let names = planets.map { (planet: Planet) -&gt; String in
+    let visitor = NameVisitor()
+    planet.accept(visitor: visitor)
+    return visitor.name
+}
+
+names
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>94A326BA-F605-4EFE-8D32-AB898CD6C56D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The visitor pattern is used to separate a relatively complex set of structured data classes from the functionality that may be performed upon the data that they hold.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Visitor</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

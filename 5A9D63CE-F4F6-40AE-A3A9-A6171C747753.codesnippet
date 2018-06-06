@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>structural-flyweight-example</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>//🍃 Flyweight
+//
+//The flyweight pattern is used to minimize memory usage or computational expenses by sharing as much as possible with other similar objects.
+//
+//Example
+
+// Instances of CoffeeFlavour will be the Flyweights
+final class SpecialityCoffee: CustomStringConvertible {
+    var origin: String
+    var description: String {
+        get {
+            return origin
+        }
+    }
+    
+    init(origin: String) {
+        self.origin = origin
+    }
+}
+
+// Menu acts as a factory and cache for CoffeeFlavour flyweight objects
+final class Menu {
+    private var coffeeAvailable: [String: SpecialityCoffee] = [:]
+    
+    func lookup(origin: String) -&gt; SpecialityCoffee? {
+        if coffeeAvailable.index(forKey: origin) == nil {
+            coffeeAvailable[origin] = SpecialityCoffee(origin: origin)
+        }
+        
+        return coffeeAvailable[origin]
+    }
+}
+
+final class CoffeeShop {
+    private var orders: [Int: SpecialityCoffee] = [:]
+    private var menu = Menu()
+    
+    func takeOrder(origin: String, table: Int) {
+        orders[table] = menu.lookup(origin: origin)
+    }
+    
+    func serve() {
+        for (table, origin) in orders {
+            print("Serving \(origin) to table \(table)")
+        }
+    }
+}
+//Usage
+
+let coffeeShop = CoffeeShop()
+
+coffeeShop.takeOrder(origin: "Yirgacheffe, Ethiopia", table: 1)
+coffeeShop.takeOrder(origin: "Buziraguhindwa, Burundi", table: 3)
+
+coffeeShop.serve()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5A9D63CE-F4F6-40AE-A3A9-A6171C747753</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Generic</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The flyweight pattern is used to minimize memory usage or computational expenses by sharing as much as possible with other similar objects.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Flyweight</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
