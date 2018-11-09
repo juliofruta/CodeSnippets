@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>public final class Observable&lt;T&gt; {
+
+    typealias ObserverBlock = (_ newValue: T, _ oldValue: T) -&gt; ()
+    typealias ObserversEntry = (observer: AnyObject, block: ObserverBlock)
+    private var observers: Array&lt;ObserversEntry&gt;
+    
+    init(_ value: T) {
+        self.value = value
+        observers = []
+    }
+    
+    var value: T {
+        didSet {
+            observers.forEach { (entry: ObserversEntry) in
+                let (_, block) = entry
+                block(value, oldValue)
+            }
+        }
+    }
+    
+    func subscribe(observer: AnyObject, block: @escaping ObserverBlock) {
+        let entry: ObserversEntry = (observer: observer, block: block)
+        observers.append(entry)
+        entry.block(value, value)
+    }
+    
+    func unsubscribe(observer: AnyObject) {
+        let filtered = observers.filter { entry in
+            let (owner, _) = entry
+            return owner !== observer
+        }
+        
+        observers = filtered
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F156FE94-0C0C-437D-8AF5-1493441BD4C2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Observable</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
