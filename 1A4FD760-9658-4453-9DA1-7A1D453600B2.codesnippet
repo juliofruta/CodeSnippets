@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mvvm</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Model {
+    var &lt;#observableProperty#&gt;: Observable&lt;&lt;#Type#&gt;&gt; = Observable(&lt;#InitialValue#&gt;)
+}
+
+class ViewModelName {
+    private var model: Model
+    
+    var &lt;#observableProperty#&gt;: Observable&lt;&lt;#Type#&gt;&gt; = Observable(&lt;#InitialValue#&gt;)
+    
+    init(model: Model) {
+        self.model = model
+        model.&lt;#observableProperty#&gt;.subscribe(observer: self, block: self.render)
+    }
+    
+    private func render&lt;T&gt;(_ newValue: T, _ oldValue: T) {
+        render()
+    }
+    
+    private func render() {
+        self.&lt;#observableProperty#&gt;.value = modelName.&lt;#observableProperty#&gt;.value
+    }
+    
+    func &lt;#name#&gt;() -&gt; &lt;#return type#&gt; {
+        
+    }
+    
+    func &lt;#name#&gt;(&lt;#parameters#&gt;) -&gt; &lt;#return type#&gt; {
+        
+    }
+}
+
+class ViewController: UIViewController {
+    @IBOutlet private weak var &lt;#Name#&gt;: &lt;#UIView#&gt;!
+    
+    var viewModel: ViewModelName!
+    
+    override func viewDidLoad() {
+        assert(viewModel != nil)
+        configureTargets()
+        viewModel.&lt;#observableProperty#&gt;.subscribe(observer: self, block: self.render)
+    }
+    
+    private func render&lt;T&gt;(_ newValue: T, _ oldValue: T) {
+        render()
+    }
+    
+    private func render() {
+        DispatchQueue.main.async {
+            self.&lt;#property#&gt; = self.viewModel.&lt;#observableProperty#&gt;.value
+        }
+    }
+    
+    private func configureTargets() {
+        self.&lt;#button#&gt;.addTarget(self, action: #selector(functionSignature), for: .touchUpInside)
+    }
+
+    @objc func functionSignature(&lt;#parameters#&gt;) -&gt; &lt;#return type#&gt; {
+        
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>1A4FD760-9658-4453-9DA1-7A1D453600B2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Creates MVVM Boilerplate</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>MVVM</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
